@@ -1,0 +1,10 @@
+@api = http://localhost:5000/api
+
+### guardar usuario
+POST = {{api}}/users  
+
+### login usuario
+POST = {{api}}/users/login
+
+### cerrar sesión usuario
+POST = {{api}}/users/logout  
