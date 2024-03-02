@@ -3,16 +3,16 @@ import userRoute from "../routes/user.routes.js";
 import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-// import { URL_CLIENT } from "./config.js";
+import { URL_CLIENT } from "./config.js";
 
 const app = express();
-// app.use(
-//   cors({
-//     origin: URL_CLIENT,
-//   })
-// );
+app.use(
+  cors({
+    credentials: true,
+    origin: URL_CLIENT,
+  })
+);
 
-app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());

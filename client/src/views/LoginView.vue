@@ -1,34 +1,23 @@
 <script setup>
-import { reactive, ref } from "vue";
-import { axiosInstance } from "../axios/axiosInstance.js";
+import { reactive } from "vue";
+import axiosI from "../axios/axiosInstance.js";
 
 const userLogin = reactive({
   correo: "",
   clave: "",
 });
 
-
 const loginUser = async () => {
   try {
-    const res = await axiosInstance.post("/users/login", userLogin);
+    const res = await axiosI.post("/users/login", userLogin);
     console.log(res);
+
+    const tk = $cookies.get("token");
+    console.log(tk);
   } catch (error) {
     console.log(error);
   }
 };
-
-// const getCookie = async () => {
-//   try {
-//     const response = await fetch("http://localhost:3000/getcookie", {
-//       method: "POST",
-//     });
-
-//     const data = await response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
 </script>
 
 <template>
@@ -59,7 +48,6 @@ const loginUser = async () => {
       </button>
     </div>
   </section>
- 
 </template>
 
 <style scoped></style>

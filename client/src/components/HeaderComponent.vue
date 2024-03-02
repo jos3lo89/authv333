@@ -6,7 +6,7 @@ import { RouterLink } from "vue-router";
   <header class="text-center p-4 bg-slate-800">
     <nav class="space-x-4">
       <RouterLink :to="{ name: 'home' }" class="text-2xl hover:text-orange-600"
-        >Home</RouterLink
+        >Inicio</RouterLink
       >
       <RouterLink :to="{ name: 'login' }" class="text-2xl hover:text-orange-600"
         >Login</RouterLink
@@ -14,7 +14,12 @@ import { RouterLink } from "vue-router";
       <RouterLink
         :to="{ name: 'register' }"
         class="text-2xl hover:text-orange-600"
-        >register</RouterLink
+        >Register</RouterLink
+      >
+      <RouterLink
+        :to="{ name: 'profile' }"
+        class="text-2xl hover:text-orange-600"
+        >Mi perfil</RouterLink
       >
     </nav>
   </header>

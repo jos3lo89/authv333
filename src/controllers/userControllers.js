@@ -44,10 +44,16 @@ export const loginUser = async (req, res) => {
 
     const token = await createToken({ id: userFound._id });
 
+    // res.cookie("token", token, {
+    //   maxAge: 1000 * 60 * 60 * 24,
+    //   secure: false,
+    //   httpOnly: true,
+    //   sameSite: "none",
+    // });
+
     res.cookie("token", token, {
-      maxAge: 1000 * 60 * 60 * 24,
-      secure: false,
-      httpOnly: true,
+      httpOnly: false,
+      secure: true,
       sameSite: "none",
     });
 
@@ -66,6 +72,22 @@ export const logoutUser = async (req, res) => {
   try {
     res.clearCookie("token");
     res.sendStatus(204);
+  } catch (error) {
+    res.status(500).json({ mensaje: [error.message] });
+    console.log(error.message);
+  }
+};
+
+export const profileUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const userFound = await userModel.findById(id);
+    res.status(200).json({
+      id: userFound._id,
+      usuario: userFound.usuario,
+      correo: userFound.correo,
+    });
   } catch (error) {
     res.status(500).json({ mensaje: [error.message] });
     console.log(error.message);

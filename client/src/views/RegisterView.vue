@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, ref } from "vue";
-import { axiosInstance } from "../axios/axiosInstance.js";
+import axiosI from "../axios/axiosInstance.js";
 
 const user = reactive({
   usuario: "",
@@ -12,7 +12,7 @@ const tasks = ref([]);
 
 const guardarUsuario = async () => {
   try {
-    const res = await axiosInstance.post("/users", user);
+    const res = await axiosI.post("/users", user);
     tasks.value = res.data.mensaje;
   } catch (error) {
     tasks.value = error.response.data.mensaje;
