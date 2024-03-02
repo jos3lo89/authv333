@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { URL_CLIENT } from "./config.js";
+import taskRoute from "../routes/task.routes.js";
 
 const app = express();
 app.use(
@@ -18,6 +19,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api", userRoute);
+
+app.use("/api", taskRoute)
 
 app.get("/ping", (req, res) => {
   res.json({ data: "pong" });
