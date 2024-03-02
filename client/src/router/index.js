@@ -11,23 +11,41 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
+      meta: {
+        isAuth: false,
+      },
     },
     {
       path: "/login",
       name: "login",
       component: LoginView,
+      meta: {
+        isAuth: false,
+      },
     },
     {
       path: "/register",
       name: "register",
       component: RegisterView,
+      meta: {
+        isAuth: false,
+      },
     },
     {
-      path  : "/profile",
+      path: "/profile",
       name: "profile",
-      component: ProfileView
-    }
+      component: ProfileView,
+      meta: {
+        isAuth: true,
+      },
+    },
   ],
+});
+
+router.beforeEach((to, from, next) => {
+  const needAuth = to.meta.isAuth;
+  if (!$cookies.get("token") && needAuth) next("login");
+  else next();
 });
 
 export default router;
